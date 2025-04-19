@@ -87,16 +87,16 @@ jobs:
     outputs:
       status: ${{ job.status }}
     steps:
-    - name: Update zlib1g
-      run: |
-        sudo apt update
-        sudo apt intall --only-upgrade zlib1g
-
     - name: Check out repository code
       uses: actions/checkout@v3
 
     - name: Install Snyk CLI
       run: npm install -g snyk
+
+    - name: Update zlib1g
+      run: |
+        sudo apt update
+        sudo apt intall --only-upgrade zlib1g
 
     - name: Run Snyk Code Scan And Check Snyk Scan Results
       continue-on-error: true
@@ -130,16 +130,16 @@ jobs:
       run:
         working-directory: flask-s3-service
     steps:
-      - name: Update zlib1g
-        run: |
-          sudo apt update
-          sudo apt intall --only-upgrade zlib1g
-
       - name: Check out repository code
         uses: actions/checkout@v3
 
       - name: Install Snyk CLI
         run: npm install -g snyk
+
+      - name: Update zlib1g
+        run: |
+          sudo apt update
+          sudo apt intall --only-upgrade zlib1g
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -183,16 +183,16 @@ jobs:
       run:
         working-directory: flask-sqs-service
     steps:
-      - name: Update zlib1g
-        run: |
-          sudo apt update
-          sudo apt intall --only-upgrade zlib1g
-
       - name: Check out repository code
         uses: actions/checkout@v3
 
       - name: Install Snyk CLI
         run: npm install -g snyk
+      
+      - name: Update zlib1g
+        run: |
+          sudo apt update
+          sudo apt intall --only-upgrade zlib1g
         
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
