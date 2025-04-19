@@ -1,9 +1,9 @@
 variable "vpc_name" {
-  default = "proj-aws-ecs-cicd-vpc-tf"
+  default = "proj-aws-lach-vpc-tf"
 }
 
 variable "subnet_name_prefix" {
-  default = "proj-aws-ecs-cicd-vpc-tf-public-*"
+  default = "proj-aws-lach-vpc-tf-public-*"
 }
 
 module "ecs" {
@@ -58,7 +58,7 @@ module "ecs" {
       cpu    = 512
       memory = 1024
       container_definitions = {
-        "${local.usage_name}-sqs-svc-container"= {
+        "${local.usage_name}-sqs-svc-container" = {
           essential = true
           image     = "${data.aws_caller_identity.current.account_id}.dkr.ecr.${data.aws_region.current.name}.amazonaws.com/${local.usage_name}-sqs-ecr:latest"
           port_mappings = [
@@ -113,14 +113,14 @@ data "aws_subnets" "existing_subnets" {
 
 data "aws_security_group" "sqs_sg" {
   filter {
-    name = "tag:Name"
+    name   = "tag:Name"
     values = ["${local.usage_name}-sqs-ecs-sg"]
   }
 }
 
 data "aws_security_group" "s3_sg" {
   filter {
-    name = "tag:Name"
+    name   = "tag:Name"
     values = ["${local.usage_name}-s3-ecs-sg"]
   }
 }
