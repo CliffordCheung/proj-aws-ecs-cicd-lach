@@ -1,9 +1,3 @@
-
-# add locals
-locals {
-  usage_name = "lach"
-}
-
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
 
