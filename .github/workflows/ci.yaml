@@ -31,6 +31,16 @@ jobs:
         run: | 
           echo "LATEST_TAG=$(git describe --tags `git rev-list --tags --max-count=1`)" >> "$GITHUB_OUTPUT"
           echo "LATEST_TAG=$(git describe --tags `git rev-list --tags --max-count=1`)"
+      
+      - name: Check and set Docker Tag
+        id: validate-tag
+        run: |
+          if [ -z "${{ needs.get-tag.outputs.LATEST_TAG }}" ]; then
+            echo "Tag is empty! Setting fallback value: v0.0.1"
+            echo "TAG=v0.0.1" >> $GITHUB_ENV
+          else
+            echo "TAG=${{ needs.get-tag.outputs.LATEST_TAG }}" >> $GITHUB_ENV
+          fi
 
       - name: Output Latest Tag
         run: echo "The latest tag is ${{ steps.get_latest_tag.outputs.LATEST_TAG }}"
@@ -143,6 +153,12 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         run: snyk container test ${{ env.APP_NAME }}-s3:${{ needs.get-tag.outputs.LATEST_TAG }}-s3-${{ github.run_number }}
 
+      - name: Docker publish to ECR
+        run: |
+          docker push ${{ vars.ECR_ENDPOINT }}/${{ env.ECR_REPO }}:${{ needs.get-tag.outputs.LATEST_TAG }}-s3-${{ github.run_number }}
+          docker push ${{ vars.ECR_ENDPOINT }}/${{ env.ECR_REPO }}:s3-latest
+
+
       # - name: Docker publish to ECR
       #   run: docker push ${{ vars.ECR_ENDPOINT }}/${{ env.ECR_REPO }}:${{ needs.get-tag.outputs.LATEST_TAG }}-s3-${{ github.run_number }}
 
@@ -184,6 +200,11 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         run: snyk container test ${{ env.APP_NAME }}-sqs:${{ needs.get-tag.outputs.LATEST_TAG }}-sqs-${{ github.run_number }}
+      
+      - name: Docker publish to ECR
+        run: |
+          docker push ${{ vars.ECR_ENDPOINT }}/${{ env.ECR_REPO }}:${{ needs.get-tag.outputs.LATEST_TAG }}-sqs-${{ github.run_number }}
+          docker push ${{ vars.ECR_ENDPOINT }}/${{ env.ECR_REPO }}:s3-latest
 
       # - name: Docker publish to ECR
       #   run: docker push ${{ vars.ECR_ENDPOINT }}/${{ env.ECR_REPO }}:${{ needs.get-tag.outputs.LATEST_TAG }}-sqs-${{ github.run_number }}
