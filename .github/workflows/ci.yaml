@@ -1,9 +1,7 @@
 name: CI Checks
 
 on:
-  pull_request:
-    branches:
-      - main
+  workflow_dispatch:
       
 env:
   APP_NAME: proj-aws-ecs-cicd
