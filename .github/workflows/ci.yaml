@@ -95,8 +95,8 @@ jobs:
 
     - name: Update zlib1g
       run: |
-        sudo apt-get update
-        sudo apt-get intall -y zlib1g
+        sudo apt update
+        sudo apt install -y zlib1g zlib1g-dev
 
     - name: Run Snyk Code Scan And Check Snyk Scan Results
       continue-on-error: true
@@ -138,8 +138,8 @@ jobs:
 
       - name: Update zlib1g
         run: |
-          sudo apt-get update
-          sudo apt-get intall -y zlib1g
+          sudo apt update
+          sudo apt install -y zlib1g zlib1g-dev
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -191,8 +191,8 @@ jobs:
       
       - name: Update zlib1g
         run: |
-          sudo apt-get update
-          sudo apt-get intall -y zlib1g
+          sudo apt update
+          sudo apt install -y zlib1g zlib1g-dev
         
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
