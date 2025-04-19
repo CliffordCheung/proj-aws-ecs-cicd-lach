@@ -48,7 +48,7 @@ def send():
         )
         message_id = response.get("MessageId", "N/A")
         logger.info("Message '%s' sent to '%s' (MessageId: %s).", message, QUEUE_URL, message_id)
-        return f"Message sent to SQS! (MessageId: {message_id})"
+        return f"<p>Message sent to SQS! (MessageId: {message_id})</p>"
     except Exception as exc:
         logger.exception("Error sending message to SQS.")
         return f"Error sending message to SQS: {str(exc)}", 500
