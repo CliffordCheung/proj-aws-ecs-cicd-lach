@@ -87,6 +87,11 @@ jobs:
     outputs:
       status: ${{ job.status }}
     steps:
+    - name: Update zlib1g
+      run: |
+        sudo apt update
+        sudo apt intall --only-upgrade zlib1g
+
     - name: Check out repository code
       uses: actions/checkout@v3
 
@@ -125,6 +130,11 @@ jobs:
       run:
         working-directory: flask-s3-service
     steps:
+      - name: Update zlib1g
+        run: |
+          sudo apt update
+          sudo apt intall --only-upgrade zlib1g
+
       - name: Check out repository code
         uses: actions/checkout@v3
 
@@ -173,6 +183,11 @@ jobs:
       run:
         working-directory: flask-sqs-service
     steps:
+      - name: Update zlib1g
+        run: |
+          sudo apt update
+          sudo apt intall --only-upgrade zlib1g
+
       - name: Check out repository code
         uses: actions/checkout@v3
 
