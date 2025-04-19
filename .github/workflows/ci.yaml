@@ -1,13 +1,11 @@
 name: CI Checks
 
 on:
-  pull_request:
-    branches:
-      - main
+  workflow_dispatch:
       
 env:
-  APP_NAME: proj-aws-ecs-cicd
-  ECR_REPO: proj-aws-ecs-cicd-ecr-repo
+  APP_NAME: proj-aws-ecs-cicd-lach
+  ECR_REPO: proj-aws-ecs-cicd-ecr-repo-lach
 
 jobs:
   initial-checks:
