@@ -1,5 +1,5 @@
 variable "vpc_name" {
-  default = "proj-aws-lach-vpc-tf"
+  default = "proj-aws-lach-vpc-tf" # update to project name
 }
 
 variable "subnet_name_prefix" {
