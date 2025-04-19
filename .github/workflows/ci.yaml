@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
       
 env:
-  APP_NAME: proj-aws-ecs-cicd-lach
-  ECR_REPO: proj-aws-ecs-cicd-ecr-repo-lach
+  APP_NAME: proj-aws-lach-cicd
+  ECR_REPO: proj-aws-lach-cicd-ecr-repo
 
 jobs:
   initial-checks:
