@@ -6,9 +6,9 @@ on:
       - main
 
 env:
-  APP_NAME: proj-aws-ecs-cicd
-  ECR_S3_REPO: proj-aws-ecs-cicd-s3-ecr
-  ECR_SQS_REPO: proj-aws-ecs-cicd-sqs-ecr
+  APP_NAME: proj-aws-lach-cicd
+  ECR_S3_REPO: proj-aws-lach-s3-ecr
+  ECR_SQS_REPO: proj-aws-lach-sqs-ecr
 
 jobs:
   get-tag:
